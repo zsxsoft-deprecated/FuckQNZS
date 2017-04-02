@@ -29,8 +29,22 @@
     "eslint-plugin-standard": "^2.1.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
-  "license": "MIT"
+  "author": "zsx <zsx@zsxsoft.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zsxsoft/FuckQNZS.git"
+  },
+  "keywords": [
+    "crawl",
+    "zhihu",
+    "spider"
+  ],
+  "bugs": {
+    "url": "https://github.com/zsxsoft/FuckQNZS/issues"
+  },
+  "homepage": "https://github.com/zsxsoft/FuckQNZS#readme"
 }

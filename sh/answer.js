@@ -38,6 +38,6 @@ const askedDB = new PouchDB(dbUrl + 'asked')
     const saveResult = await request.post(Object.assign({}, requestHeaders, {url: `http://sns.qnzs.youth.cn/ajax/anssave/token/${token}`, form: askData}))
     const obj = JSON.parse(saveResult)
     console.log(`Answered: ${JSON.stringify(obj)}`)
-    await delay(21000)
+    await delay(21000) // 青年之声答题限制20秒一次
   }
 })()
