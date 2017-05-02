@@ -1,5 +1,6 @@
 const {request, iconv, cheerio, classId, requestHeaders, delay, PouchDB, dbUrl} = require('./global')
 const questionsDB = new PouchDB(dbUrl + 'zhihuQuestions')
+const asked = new PouchDB(dbUrl + 'asked')
 
 ;(async () => {
   const token = process.argv[2]
@@ -26,7 +27,21 @@ const questionsDB = new PouchDB(dbUrl + 'zhihuQuestions')
     }
     requestHeaders.headers['X-Requested-With'] = 'XMLHttpRequest'
     const saveResult = await request.post(Object.assign({}, requestHeaders, {url: `http://sns.qnzs.youth.cn/ajax/quessave/token/${token}`, form: askData}))
-    console.log(`Asked: ${question.title}`, saveResult)
+    try {
+      const object = JSON.parse(saveResult)
+      if (object.err !== 0) {
+        throw object.msg
+      }
+      asked.put({
+        _id: Math.random().toString(),
+        url: 'http://sns.qnzs.youth.cn' + object.linkto
+      })
+      console.log(`Asked: ${question.title}`, saveResult)
+    } catch (e) {
+      console.error(`Ask ${question.title} failed: \n`, e)
+    }
+    
+
     await delay(6000)
   }
 })()
