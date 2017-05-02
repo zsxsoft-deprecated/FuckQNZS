@@ -19,7 +19,7 @@ const asked = new PouchDB(dbUrl + 'asked')
     const askData = {
       'ques[token_uid]': iconv.encode($("[name='ques[token_uid]']").val(), 'utf-8'),
       'ques[token_name]': iconv.encode($("[name='ques[token_name]']").val(), 'utf-8'),
-      'change_aid': iconv.encode($("[name='change_aid']").val(), 'utf-8'),
+      'change_aid': classId, // iconv.encode($("[name='change_aid']").val(), 'utf-8'),
       'change_limit': iconv.encode($("[name='change_limit']").val(), 'utf-8'),
       'ques[title]': iconv.encode(question.title, 'utf-8'),
       'tags[]': iconv.encode('青年交流', 'utf-8'),

@@ -1,4 +1,4 @@
-const {request, iconv, cheerio, requestHeaders, delay, PouchDB, dbUrl} = require('./global')
+const {request, iconv, classId, cheerio, requestHeaders, delay, PouchDB, dbUrl} = require('./global')
 const zhihuAnswersDB = new PouchDB(dbUrl + 'zhihuAnswers')
 const askedDB = new PouchDB(dbUrl + 'asked')
 
@@ -28,7 +28,7 @@ const askedDB = new PouchDB(dbUrl + 'asked')
     const $ = cheerio.load(askPage)
     const askData = {
       'answer[qid]': asked.match(/\/index\/show\/id\/(\d*?)\//)[1], // iconv.encode($("[name='answer[qid]']").val(), 'utf-8'),
-      'change_aid': iconv.encode($("[name='change_aid']").val(), 'utf-8'),
+      'change_aid': classId, //iconv.encode($("[name='change_aid']").val(), 'utf-8'),
       'change_limit': iconv.encode($("[name='change_limit']").val(), 'utf-8'),
       'answer[content]': iconv.encode(answer.data, 'utf-8')
     }
