@@ -24,7 +24,7 @@ const askedDB = new PouchDB(dbUrl + 'asked')
       skip: Math.floor(Math.random() * answerLength)
     })).rows[0].doc
 
-    const askPage = await request.get(Object.assign({}, requestHeaders, {url: 'http://sns.qnzs.youth.cn' + asked.replace(/\/token\/.*?\//, `/token/${token}/`)}))
+    const askPage = await request.get(Object.assign({}, requestHeaders, {url: asked.replace(/\/token\/.*?\//, `/token/${token}/`)}))
     const $ = cheerio.load(askPage)
     const askData = {
       'answer[qid]': asked.match(/\/index\/show\/id\/(\d*?)\//)[1], // iconv.encode($("[name='answer[qid]']").val(), 'utf-8'),
