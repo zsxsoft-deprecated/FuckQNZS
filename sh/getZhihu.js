@@ -8,7 +8,17 @@ const getContent = async (url) => {
   const $ = cheerio.load(data, {
     decodeEntities: false
   })
+  const question = $('.QuestionRichText').html()
   const answers = []
+  if (question === null) {
+    console.error('陷入知乎验证码的海洋中，请打开一个知乎地址输入验证码。二十秒后继续任务。')
+    console.log(url)
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        getContent(url).then(resolve).catch(reject)
+      }, 20000)
+    })
+  }
   try {
     const data = JSON.parse(ent.decode($('#data').attr('data-state'))).entities.answers
     Object.keys(data).forEach(key => {
