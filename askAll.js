@@ -15,7 +15,7 @@ const questionsDB = new PouchDB(dbUrl + 'zhihuQuestions')
     const b = cp.spawn('node', ['./sh/ask.js', p, i * range, (i + 1) * range])
     b.stdout.on('data', p => process.stdout.write(p))
     b.stderr.on('data', k => console.error(k.toString()))
-    await delay(5000)
+    await delay(20000)
   }
 })()
 

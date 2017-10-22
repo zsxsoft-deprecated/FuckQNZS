@@ -42,6 +42,6 @@ const asked = new PouchDB(dbUrl + 'asked')
     }
     
 
-    await delay(6000)
+    await delay(10 * 60 * 1000)
   }
 })()
